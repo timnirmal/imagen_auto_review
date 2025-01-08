@@ -4,16 +4,11 @@ from supabase_utils import update_auto_review_results, get_images_with_status
 from logging_config import logger
 import os
 from dotenv import load_dotenv
+import google.generativeai as genai
 
 load_dotenv()
 
 app = FastAPI()
-
-import google.generativeai as genai
-
-from dotenv import load_dotenv
-
-load_dotenv()
 
 gemini_api_key = os.getenv("GEMINI_API_KEY", None)
 if not gemini_api_key:

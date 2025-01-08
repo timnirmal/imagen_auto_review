@@ -1,5 +1,3 @@
-
-import requests
 import io
 import json
 from PIL import Image
@@ -226,25 +224,40 @@ def analyze_image(image_bytes: bytes, genai_model) -> (str, str):
                 return "error", f"Failed after {max_retries} retries: {e}"
 
 
-# # Example usage
-# if __name__ == "__main__":
-#     from dotenv import load_dotenv
-#
-#     load_dotenv()
-#
-#     gemini_api_key = os.getenv("GEMINI_API_KEY", None)
-#
-#     # Configure Gemini with an API key
-#     genai_model  = configure_gemini(gemini_api_key)
-#
-#     # Path to the image file
-#     # image_path = "image.jpg"
-#     image_path = "image2.jpg"
-#
-#     # Analyze the image
-#     categories, details = analyze_image(image_path, genai_model)
-#     logger.info(f"Categories: {categories}")
-#     logger.info(f"Details: {details}")
-#
-#     print(categories)
-#     print(details)
+# Example usage
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+    import os
+    import google.generativeai as genai
+
+    load_dotenv()
+
+    gemini_api_key = os.getenv("GEMINI_API_KEY", None)
+
+    def configure_gemini(api_key: str):
+        """Configure the generative AI model."""
+        genai.configure(api_key=api_key)
+
+        # Gemini model configuration
+        model = genai.GenerativeModel('gemini-1.5-flash')
+
+        return model
+
+    # Configure Gemini with an API key
+    genai_model  = configure_gemini(gemini_api_key)
+
+    response = genai_model.generate_content(contents=[ANALYSIS_PROMPT])
+
+    # # Path to the image file
+    # # image_path = "image.jpg"
+    # image_path = "image2.jpg"
+
+    # Analyze the image
+    # categories, details = analyze_image(image_path, genai_model)
+    # logger.info(f"Categories: {categories}")
+    # logger.info(f"Details: {details}")
+    #
+    # print(categories)
+    # print(details)
+
+    print(response)

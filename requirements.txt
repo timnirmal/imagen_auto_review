@@ -1,0 +1,9 @@
+protobuf~=5.29.2
+fastapi~=0.115.6
+uvicorn
+python-dotenv~=1.0.1
+pycurl~=7.45.4
+requests~=2.32.3
+pillow~=11.1.0
+supabase~=2.11.0
+google-generativeai

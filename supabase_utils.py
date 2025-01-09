@@ -8,6 +8,7 @@ load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+image_limit = int(os.getenv("LIMIT"))
 
 if not SUPABASE_URL or not SUPABASE_ANON_KEY:
     raise EnvironmentError("Missing SUPABASE_URL or SUPABASE_ANON_KEY in .env file.")
@@ -29,7 +30,7 @@ def get_images_with_status(status: str):
     logger.info(f"Fetching images with review_status={status}")
 
     # Step 1: Fetch images with the given status
-    response = supabase.table("midbot_images").select("*").limit(2).eq("review_status", status).execute()
+    response = supabase.table("midbot_images").select("*").limit(image_limit).eq("review_status", status).execute()
     images = response.data
 
     if not images:

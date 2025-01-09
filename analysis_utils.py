@@ -213,9 +213,19 @@ def analyze_image(image_bytes: bytes, genai_model) -> (str, str):
             if analysis['recognizable_people']:
                 categories.append('PP')
 
-            category_str = ', '.join(categories) if categories else 'Good'
             details_str = analysis.get('details', 'No details provided.')
-            return category_str, details_str
+
+            # Prioritize categories
+            if 'H1' in categories:
+                final_category = 'H1'
+            elif 'T1' in categories:
+                final_category = 'T1'
+            elif 'good' in categories:
+                final_category = 'good'
+            else:
+                return "not_approved", "Image does not meet the approval criteria."
+
+            return final_category, details_str
 
         except Exception as e:
             logger.error(f"Error analyzing image: {e}")

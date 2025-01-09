@@ -1,6 +1,6 @@
 ## If key issue
 
-```json
+```
 {
   "message": "Gemini API key validation failed: 400 API key not valid. Please pass a valid API
   key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
@@ -26,10 +26,20 @@
         }
       ]
     }
-    
 
-need a handling code 
+1.
+
+need a handling code
 
 either run all the time or
-we can create cron, every one hour -  in our system we keep a timer, which will run for 45 mins after we start it.. and afrer that when we recive Bulk processing completed. this stops... 
-after a process if we this message wasnt recived we need to get a notification to our system indicating that this is not working
+we can create cron, every one hour - in our system we keep a timer, which will run for 45 mins after we start it.. and
+afrer that when we recive Bulk processing completed. this stops...
+after a process if we this message wasnt recived we need to get a notification to our system indicating that this is not
+working
+
+2.
+
+make sure that we are try image for 3 times and after that we are ignoring and add it as error
+
+
+GEMINI_API_KEY=AIzaSyDK9G2GPNURHTiMKLVbedzYoXi9j0pdoVk

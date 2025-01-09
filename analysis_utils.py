@@ -258,16 +258,16 @@ if __name__ == "__main__":
 
     response = genai_model.generate_content(contents=[ANALYSIS_PROMPT])
 
-    # # Path to the image file
-    # # image_path = "image.jpg"
-    # image_path = "image2.jpg"
+    # Load the image as bytes
+    with open("image2.jpg", "rb") as image_file:
+        image_bytes = image_file.read()
 
-    # Analyze the image
-    # categories, details = analyze_image(image_path, genai_model)
-    # logger.info(f"Categories: {categories}")
-    # logger.info(f"Details: {details}")
-    #
-    # print(categories)
-    # print(details)
+    # Analyze the image using bytes
+    categories, details = analyze_image(image_bytes, genai_model)
+    logger.info(f"Categories: {categories}")
+    logger.info(f"Details: {details}")
+
+    print(categories)
+    print(details)
 
     print(response)

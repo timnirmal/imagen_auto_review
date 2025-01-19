@@ -43,3 +43,20 @@ make sure that we are try image for 3 times and after that we are ignoring and a
 
 
 GEMINI_API_KEY=AIzaSyDK9G2GPNURHTiMKLVbedzYoXi9j0pdoVk
+
+
+
+
+
+
+
+025-01-13 01:33:49,441 [INFO] httpx - HTTP Request: POST http://testserver/bulk_auto_review "HTTP/1.1 200 OK"
+Running bulk_auto_review:  90%|█████████ | 90/100 [6:06:58<1:49:54, 659.46s/it]{'message': 'Gemini API key validation failed: Timeout of 600.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNKNOWN: ipv4:74.125.130.95:443: tcp handshaker shutdown'}
+2025-01-13 01:43:48,020 [ERROR] logging_config - Gemini API key validation failed: Timeout of 600.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNKNOWN: ipv4:74.125.24.95:443: tcp handshaker shutdown
+2025-01-13 01:43:48,206 [INFO] httpx - HTTP Request: POST http://testserver/bulk_auto_review "HTTP/1.1 200 OK"
+{'message': 'Gemini API key validation failed: Timeout of 600.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNKNOWN: ipv4:74.125.24.95:443: tcp handshaker shutdown'}
+Running bulk_auto_review:  91%|█████████ | 91/100 [6:16:56<1:36:11, 641.25s/it]2025-01-13 01:53:45,361 [ERROR] logging_config - Gemini API key validation failed: Timeout of 600.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNKNOWN: ipv4:172.217.194.95:443: tcp handshaker shutdown
+2025-01-13 01:53:45,678 [INFO] httpx - HTTP Request: POST http://testserver/bulk_auto_review "HTTP/1.1 200 OK"
+{'message': 'Gemini API key validation failed: Timeout of 600.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNKNOWN: ipv4:172.217.194.95:443: tcp handshaker shutdown'}
+Running bulk_auto_review:  92%|█████████▏| 92/100 [6:26:54<1:23:44, 628.12s/it]
+Process finished with exit code -1

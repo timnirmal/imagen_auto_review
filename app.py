@@ -98,15 +98,23 @@ async def process_record(record):
         # Process the image (analyze it)
         category, details = analyze_image(image_bytes, genai_model=genai_model)
 
-        # Update the database with processing results
-        update_auto_review_results(
-            image_id=record["id"],
-            auto_review_status=category,
-            review_status="auto_review_success",
-            auto_review_details=details
-        )
-
-        return {"image_id": record["id"], "status": "success", "categories": category, "details": details}
+        # Update the database based on the analysis result
+        if category == "error":
+            update_auto_review_results(
+                image_id=record["id"],
+                auto_review_status="auto_review_error",
+                review_status="auto_review_error",
+                auto_review_details=details
+            )
+            return {"image_id": record["id"], "status": "error", "error": details}
+        else:
+            update_auto_review_results(
+                image_id=record["id"],
+                auto_review_status=category,
+                review_status="auto_review_success",
+                auto_review_details=details
+            )
+            return {"image_id": record["id"], "status": "success", "categories": category, "details": details}
 
     except Exception as e:
         # Handle errors and update the database with the error

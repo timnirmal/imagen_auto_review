@@ -10,6 +10,6 @@ def run_bulk_auto_review():
     return response.json()
 
 if __name__ == "__main__":
-    for _ in tqdm(range(100), desc="Running bulk_auto_review"):
+    for _ in tqdm(range(20), desc="Running bulk_auto_review"):
         result = run_bulk_auto_review()
         print(result)  # Optionally print the result of each call

@@ -30,7 +30,7 @@ def get_images_with_status(status: str):
     logger.info(f"Fetching images with review_status={status}")
 
     # Step 1: Fetch images with the given status
-    response = supabase.table("midbot_images").select("*").limit(image_limit).eq("review_status", status).execute()
+    response = supabase.table("midbot_images").select("*").order("created_at").limit(image_limit).eq("review_status", status).execute()
     images = response.data
 
     if not images:

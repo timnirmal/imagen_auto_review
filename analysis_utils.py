@@ -316,7 +316,7 @@ if __name__ == "__main__":
         genai.configure(api_key=api_key)
 
         # Gemini model configuration
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
 
         return model
 
@@ -338,5 +338,3 @@ if __name__ == "__main__":
 
     print(categories)
     print(details)
-
-

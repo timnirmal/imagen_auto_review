@@ -90,7 +90,7 @@ async def process_record(record):
         # Construct the URL
         job_id = record["job_id"]
         image_index = record["image_index"]
-        url = f"https://cdn.midjourney.com/{job_id}/0_{image_index}.png"
+        url = f"https://cdn.midjourney.com/{job_id}/0_{image_index}.jpeg"
 
         # Download the image
         image_bytes = await async_download_image(url)

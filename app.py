@@ -31,11 +31,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 executor = ThreadPoolExecutor()
 
-BASE_URL = "https://cdn.midjourney.com"
+BASE_URL = "https://imagereviewyataura.s3.us-east-1.amazonaws.com"
 
 def construct_image_url(job_id: str, image_index: int) -> str:
     """Construct the image URL from job_id and image_index."""
-    return f"{BASE_URL}/{job_id}/0_{image_index}.png"
+    return f"{BASE_URL}/{job_id}__{image_index}.jpg"
 
 def validate_gemini_api_key(model):
     """Validate the Gemini API key by making a test request."""
@@ -90,7 +90,7 @@ async def process_record(record):
         # Construct the URL
         job_id = record["job_id"]
         image_index = record["image_index"]
-        url = f"https://cdn.midjourney.com/{job_id}/0_{image_index}.jpeg"
+        url = f"https://imagereviewyataura.s3.us-east-1.amazonaws.com/{job_id}__{image_index}.jpg"
 
         # Download the image
         image_bytes = await async_download_image(url)
@@ -135,10 +135,10 @@ async def bulk_auto_review():
     except HTTPException as e:
         return {"message": e.detail}
 
-    """Process all images with review_status = 'added' in a single request."""
-    images = get_images_with_status("added")
+    """Process all images with review_status = 'downloaded' in a single request."""
+    images = get_images_with_status("downloaded")
     if not images:
-        return {"message": "No images found with review_status='added'."}
+        return {"message": "No images found with review_status='downloaded'."}
 
     print(images)
 
